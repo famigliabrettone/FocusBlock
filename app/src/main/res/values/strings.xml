@@ -1,0 +1,62 @@
+<resources>
+    <string name="app_name">FocusBlock</string>
+
+    <!-- Titoli -->
+    <string name="title_app_selection">Seleziona App da Bloccare</string>
+    <string name="title_schedule">Programmazione Orari</string>
+    <string name="title_days">Giorni della Settimana</string>
+    <string name="title_holidays">Festivi Italiani</string>
+    <string name="title_quick_actions">Azioni Rapide</string>
+    <string name="title_status">Stato Attuale</string>
+
+    <!-- Pulsanti -->
+    <string name="btn_block_now">🔒 BLOCCA ADESSO</string>
+    <string name="btn_unblock_temp">⏱ SBLOCCA TEMPORANEAMENTE</string>
+    <string name="btn_save">💾 SALVA IMPOSTAZIONI</string>
+    <string name="btn_enable_accessibility">Attiva Servizio di Accessibilità</string>
+    <string name="btn_enable_notification">Attiva Blocco Notifiche</string>
+
+    <!-- Giorni -->
+    <string name="day_mon">LUN</string>
+    <string name="day_tue">MAR</string>
+    <string name="day_wed">MER</string>
+    <string name="day_thu">GIO</string>
+    <string name="day_fri">VEN</string>
+    <string name="day_sat">SAB</string>
+    <string name="day_sun">DOM</string>
+
+    <!-- Stato -->
+    <string name="status_active">🟢 App sbloccata</string>
+    <string name="status_blocked">🔴 App bloccata</string>
+    <string name="status_blocked_until">🔴 Bloccata fino a: %s</string>
+    <string name="status_unblocked_until">🟡 Sbloccata temporaneamente fino a: %s</string>
+
+    <!-- Orari -->
+    <string name="time_from">Dalle ore:</string>
+    <string name="time_to">Alle ore:</string>
+    <string name="all_day">Giornata intera</string>
+
+    <!-- Festivi -->
+    <string name="holidays_enable">Blocca nei giorni festivi</string>
+    <string name="holidays_list_title">Festivi abilitati:</string>
+
+    <!-- Blocco schermata -->
+    <string name="block_screen_title">App Bloccata</string>
+    <string name="block_screen_message">Questa app è bloccata secondo la tua programmazione.</string>
+    <string name="block_screen_until">Sarà disponibile: %s</string>
+    <string name="block_screen_btn_back">Torna Indietro</string>
+
+    <!-- Sblocco temporaneo -->
+    <string name="temp_unblock_title">Sblocca Temporaneamente</string>
+    <string name="temp_unblock_5">5 minuti</string>
+    <string name="temp_unblock_10">10 minuti</string>
+    <string name="temp_unblock_15">15 minuti</string>
+    <string name="temp_unblock_30">30 minuti</string>
+    <string name="temp_unblock_60">1 ora</string>
+
+    <!-- Accessibilità -->
+    <string name="accessibility_service_description">Questo servizio monitora l\'apertura delle app bloccate e le impedisce durante gli orari programmati.</string>
+
+    <!-- Notifiche -->
+    <string name="notification_listener_description">Blocca le notifiche delle app selezionate durante gli orari programmati.</string>
+</resources>

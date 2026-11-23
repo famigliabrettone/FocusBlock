@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="2dp"
+    app:cardBackgroundColor="@color/card_background">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:padding="14dp">
+
+        <!-- Info programmazione -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <!-- Nome -->
+            <TextView
+                android:id="@+id/tvScheduleName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/text_primary" />
+
+            <!-- Giorni -->
+            <TextView
+                android:id="@+id/tvScheduleDays"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="13sp"
+                android:textColor="@color/primary"
+                android:layout_marginTop="2dp" />
+
+            <!-- Orario -->
+            <TextView
+                android:id="@+id/tvScheduleTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="13sp"
+                android:textColor="@color/text_secondary"
+                android:layout_marginTop="2dp" />
+
+            <!-- Badge notifica -->
+            <TextView
+                android:id="@+id/tvNotifyBadge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🔔 Notifica attiva"
+                android:textSize="11sp"
+                android:textColor="@color/accent"
+                android:visibility="gone"
+                android:layout_marginTop="4dp" />
+        </LinearLayout>
+
+        <!-- Switch attivo/disattivo -->
+        <com.google.android.material.materialswitch.MaterialSwitch
+            android:id="@+id/switchScheduleEnabled"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="4dp" />
+
+        <!-- Pulsante modifica -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnEditSchedule"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:padding="0dp"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            app:icon="@android:drawable/ic_menu_edit"
+            app:iconSize="18dp"
+            app:iconPadding="0dp"
+            style="@style/Widget.Material3.Button.IconButton" />
+
+        <!-- Pulsante elimina -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnDeleteSchedule"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:padding="0dp"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            app:icon="@android:drawable/ic_menu_delete"
+            app:iconSize="18dp"
+            app:iconPadding="0dp"
+            app:iconTint="@color/blocked_red"
+            style="@style/Widget.Material3.Button.IconButton" />
+
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

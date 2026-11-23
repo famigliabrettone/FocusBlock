@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Permessi per notifiche e allarmi -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+    <uses-permission android:name="android.permission.USE_EXACT_ALARM" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <!-- FOREGROUND_SERVICE_SPECIAL_USE rimossa: NotificationBlockerService
+         non chiama più startForeground(), quindi non serve questo permesso. -->
+
+    <!-- Silenzia lo squillo chiamate durante il blocco -->
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+
+    <!-- Accesso Non Disturbare (DND) per silenziare le chiamate VoIP -->
+    <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY" />
+
+    <!-- Permesso per visualizzare tutte le app installate -->
+    <uses-permission
+        android:name="android.permission.QUERY_ALL_PACKAGES"
+        tools:ignore="QueryAllPackagesPermission" />
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.BloccoWhatsapp">
+
+        <!-- Activity principale -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:windowSoftInputMode="adjustResize">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- Selezione app installate -->
+        <activity
+            android:name=".AppPickerActivity"
+            android:exported="false"
+            android:label="Scegli app da bloccare" />
+
+        <!-- Creazione / modifica singola programmazione -->
+        <activity
+            android:name=".EditScheduleActivity"
+            android:exported="false"
+            android:label="Programmazione" />
+
+        <!-- Schermata di blocco (appare quando apri un'app bloccata) -->
+        <activity
+            android:name=".BlockScreenActivity"
+            android:exported="false"
+            android:theme="@style/Theme.BlockScreen"
+            android:excludeFromRecents="true"
+            android:noHistory="true" />
+
+        <!-- Servizio di Accessibilità (monitora le app aperte) -->
+        <service
+            android:name=".AppBlockerAccessibilityService"
+            android:exported="false"
+            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
+            <intent-filter>
+                <action android:name="android.accessibilityservice.AccessibilityService" />
+            </intent-filter>
+            <meta-data
+                android:name="android.accessibilityservice"
+                android:resource="@xml/accessibility_service_config" />
+        </service>
+
+        <!-- Servizio blocco notifiche + chiamate
+             E' un servizio LEGATO DAL SISTEMA (non avviato dall'app),
+             quindi NON usa startForeground(). Su Android 12+ farlo causerebbe
+             ForegroundServiceStartNotAllowedException e il crash silenzioso. -->
+        <service
+            android:name=".NotificationBlockerService"
+            android:exported="false"
+            android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE">
+            <intent-filter>
+                <action android:name="android.service.notification.NotificationListenerService" />
+            </intent-filter>
+        </service>
+
+        <!-- VPN locale per bloccare internet alle app selezionate -->
+        <service
+            android:name=".BlockVpnService"
+            android:exported="false"
+            android:permission="android.permission.BIND_VPN_SERVICE">
+            <intent-filter>
+                <action android:name="android.net.VpnService" />
+            </intent-filter>
+        </service>
+
+        <!-- Receiver per notifica 10 minuti prima -->
+        <receiver
+            android:name=".ScheduleNotificationReceiver"
+            android:exported="false" />
+
+        <!-- Receiver per rilevare nuove installazioni e aggiornare la VPN -->
+        <receiver
+            android:name=".PackageInstallReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_ADDED" />
+                <data android:scheme="package" />
+            </intent-filter>
+        </receiver>
+
+    </application>
+
+</manifest>

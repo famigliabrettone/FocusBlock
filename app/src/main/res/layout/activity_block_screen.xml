@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blocked_red"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <!-- Icona di blocco grande -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="🔒"
+            android:textSize="72sp"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Titolo -->
+        <TextView
+            android:id="@+id/blockTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/block_screen_title"
+            android:textColor="@color/white"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_marginBottom="12dp" />
+
+        <!-- Messaggio -->
+        <TextView
+            android:id="@+id/blockMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/block_screen_message"
+            android:textColor="#FFFFCDD2"
+            android:textSize="15sp"
+            android:gravity="center"
+            android:layout_marginBottom="8dp" />
+
+        <!-- Stato -->
+        <TextView
+            android:id="@+id/blockStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:gravity="center"
+            android:layout_marginBottom="32dp" />
+
+        <!-- Pulsante Sblocca Temporaneamente (wrap_content per non tagliare il testo) -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnTempUnblock"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="56dp"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:text="⏱ SBLOCCA TEMPORANEAMENTE"
+            android:textSize="14sp"
+            android:backgroundTint="@color/white"
+            android:textColor="@color/blocked_red"
+            android:layout_marginBottom="12dp"
+            style="@style/Widget.Material3.Button" />
+
+        <!-- Pulsante Torna Indietro -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnGoBack"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="56dp"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:text="← TORNA INDIETRO"
+            android:textSize="14sp"
+            android:textColor="@color/white"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:strokeColor="@color/white" />
+
+    </LinearLayout>
+</ScrollView>

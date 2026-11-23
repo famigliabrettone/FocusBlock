@@ -1,0 +1,716 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- ===== INTESTAZIONE ===== -->
+        <!-- Disposizione verticale per evitare sovrapposizioni o testi troncati con font grandi -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🛡️ FocusBlock"
+                android:textSize="26sp"
+                android:textStyle="bold"
+                android:textColor="@color/primary"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:id="@+id/tvStatus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="🟢 Attivo"
+                android:textSize="14sp"
+                android:gravity="center"
+                android:background="@drawable/status_badge_bg"
+                android:paddingStart="14dp"
+                android:paddingEnd="14dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp" />
+        </LinearLayout>
+
+        <!-- ===== CARD: PERMESSI ===== -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardPermissions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="2dp"
+            app:strokeColor="@color/accent"
+            app:strokeWidth="1dp"
+            app:cardBackgroundColor="@color/card_background">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="⚙️ Permessi Necessari"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/text_primary"
+                    android:layout_marginBottom="12dp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnEnableAccessibility"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="48dp"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp"
+                    android:text="Attiva Servizio di Accessibilità"
+                    android:textSize="13sp"
+                    style="@style/Widget.Material3.Button.TonalButton" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnEnableNotification"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="48dp"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp"
+                    android:text="Attiva Blocco Notifiche"
+                    android:textSize="13sp"
+                    android:layout_marginTop="8dp"
+                    style="@style/Widget.Material3.Button.TonalButton" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnEnableVpn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="48dp"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp"
+                    android:text="Attiva Blocco Connessione (VPN)"
+                    android:textSize="13sp"
+                    android:layout_marginTop="8dp"
+                    style="@style/Widget.Material3.Button.TonalButton" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- ===== CARD: APP BLOCCATE ===== -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="2dp"
+            app:cardBackgroundColor="@color/card_background">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="8dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="📱 App da Bloccare"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/text_primary" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnPickApps"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:minHeight="36dp"
+                        android:paddingTop="4dp"
+                        android:paddingBottom="4dp"
+                        android:text="Modifica"
+                        android:textSize="12sp"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp"
+                        style="@style/Widget.Material3.Button.OutlinedButton" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tvSelectedApps"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Nessuna app selezionata"
+                    android:textSize="14sp"
+                    android:layout_marginTop="8dp"
+                    android:textColor="@color/text_secondary" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- ===== CARD: AZIONI RAPIDE ===== -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="2dp"
+            app:cardBackgroundColor="@color/card_background">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="⚡ Azioni Rapide"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/text_primary"
+                    android:layout_marginBottom="12dp" />
+
+                <!-- wrap_content + minHeight="56dp" per evitare che testi su più righe vengano tagliati -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnBlockNow"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="56dp"
+                    android:paddingTop="12dp"
+                    android:paddingBottom="12dp"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:text="🔒 BLOCCA ADESSO"
+                    android:textSize="15sp"
+                    android:backgroundTint="@color/blocked_red"
+                    style="@style/Widget.Material3.Button" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnUnblockTemp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="56dp"
+                    android:paddingTop="12dp"
+                    android:paddingBottom="12dp"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:text="⏱ SBLOCCA TEMPORANEAMENTE"
+                    android:textSize="15sp"
+                    android:layout_marginTop="8dp"
+                    android:backgroundTint="@color/accent"
+                    style="@style/Widget.Material3.Button" />
+
+                <!-- Descrizione esplicativa delle azioni rapide -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:textSize="12sp"
+                    android:textColor="@color/text_secondary"
+                    android:lineSpacingExtra="2dp"
+                    android:text="• 'Blocca Adesso': se sei nell'orario libero, blocca l'app fino alla prossima programmazione.\n• 'Sblocca Temporaneamente': ha priorità assoluta su tutto (orari, ferie e festivi)." />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- ===== CARD: ORARIO SETTIMANALE DI LAVORO (SBLOCCATO) ===== -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardWorkSchedule"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="3dp"
+            app:strokeColor="@color/primary"
+            app:strokeWidth="1.5dp"
+            app:cardBackgroundColor="@color/card_background">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <!-- Header con switch -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="8dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="🕒 Orario Lavoro (Sbloccato)"
+                        android:textSize="17sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/primary" />
+
+                    <com.google.android.material.materialswitch.MaterialSwitch
+                        android:id="@+id/switchWorkSchedule"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+                <!-- Box guida esplicativo -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="0dp"
+                    app:cardBackgroundColor="@color/active_green_light">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="10dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="💡 Come funziona:"
+                            android:textSize="13sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/primary_dark"
+                            android:layout_marginBottom="2dp" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Negli orari indicati sotto, l'app è SBLOCCATA per lavorare.\nIn tutti gli altri orari (la sera, la notte e dal sabato pomeriggio a lunedì mattina) l'app sarà AUTOMATICAMENTE BLOCCATA."
+                            android:textSize="12sp"
+                            android:textColor="@color/primary_dark" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Container configurazione orari (visibile se switch attivo) -->
+                <LinearLayout
+                    android:id="@+id/layoutWorkScheduleContent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <!-- SEZIONE LUNEDÌ - VENERDÌ -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="📅 Lunedì – Venerdì (Sbloccata)"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/text_primary"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginBottom="6dp" />
+
+                    <!-- Due pulsanti affiancati con weight=1 e wrap_content per non sovrapporsi mai -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginBottom="12dp">
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnWorkMonFriFrom"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:minHeight="48dp"
+                            android:paddingTop="8dp"
+                            android:paddingBottom="8dp"
+                            android:text="Dalle 08:00"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            android:layout_marginEnd="4dp"
+                            style="@style/Widget.Material3.Button.OutlinedButton" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnWorkMonFriTo"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:minHeight="48dp"
+                            android:paddingTop="8dp"
+                            android:paddingBottom="8dp"
+                            android:text="Alle 18:10"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            android:layout_marginStart="4dp"
+                            style="@style/Widget.Material3.Button.OutlinedButton" />
+                    </LinearLayout>
+
+                    <!-- SEZIONE SABATO -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginBottom="4dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="📅 Sabato lavorativo (Sbloccata)"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/text_primary" />
+
+                        <com.google.android.material.materialswitch.MaterialSwitch
+                            android:id="@+id/switchWorkSat"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/layoutWorkSatTimes"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginBottom="12dp">
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnWorkSatFrom"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:minHeight="48dp"
+                            android:paddingTop="8dp"
+                            android:paddingBottom="8dp"
+                            android:text="Dalle 08:00"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            android:layout_marginEnd="4dp"
+                            style="@style/Widget.Material3.Button.OutlinedButton" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnWorkSatTo"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:minHeight="48dp"
+                            android:paddingTop="8dp"
+                            android:paddingBottom="8dp"
+                            android:text="Alle 13:10"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            android:layout_marginStart="4dp"
+                            style="@style/Widget.Material3.Button.OutlinedButton" />
+                    </LinearLayout>
+
+                    <!-- RIEPILOGO AUTOMATICO BLOCCO WEEKEND & NOTTE -->
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginBottom="10dp"
+                        app:cardCornerRadius="10dp"
+                        app:cardElevation="0dp"
+                        app:cardBackgroundColor="@color/blocked_red_light">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="10dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="🔒 Blocco Automatico Fuori Orario:"
+                                android:textSize="13sp"
+                                android:textStyle="bold"
+                                android:textColor="@color/blocked_red"
+                                android:layout_marginBottom="4dp" />
+
+                            <TextView
+                                android:id="@+id/tvWorkScheduleSummary"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="• Lun–Ven: bloccata dalle 18:10 alle 08:00 del mattino\n• Weekend: bloccata da Sabato alle 13:10 a Lunedì alle 08:00\n• Domenica: bloccata 24h su 24"
+                                android:textSize="12sp"
+                                android:lineSpacingExtra="2dp"
+                                android:textColor="@color/text_primary" />
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <!-- Bottone per reimpostare gli orari richiesti -->
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnResetWorkSchedule"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:minHeight="44dp"
+                        android:paddingTop="8dp"
+                        android:paddingBottom="8dp"
+                        android:text="🔄 Reimposta Orario Richiesto (Lun-Ven 8-18:10, Sab 8-13:10)"
+                        android:textSize="12sp"
+                        style="@style/Widget.Material3.Button.TextButton" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- ===== CARD: PROGRAMMAZIONI PERSONALIZZATE EXTRA ===== -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="2dp"
+            app:cardBackgroundColor="@color/card_background">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="6dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="📅 Blocchi Extra (Opzionale)"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/text_primary" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnAddSchedule"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:minHeight="36dp"
+                        android:paddingTop="4dp"
+                        android:paddingBottom="4dp"
+                        android:text="+ Aggiungi"
+                        android:textSize="12sp"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp"
+                        android:backgroundTint="@color/primary"
+                        style="@style/Widget.Material3.Button" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Blocchi orari aggiuntivi durante la giornata (es. pausa pranzo o momenti di studio)."
+                    android:textSize="12sp"
+                    android:textColor="@color/text_secondary"
+                    android:layout_marginBottom="8dp" />
+
+                <!-- Lista programmazioni (aggiunta dinamicamente) -->
+                <LinearLayout
+                    android:id="@+id/schedulesContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" />
+
+                <TextView
+                    android:id="@+id/tvNoSchedules"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Nessun blocco extra configurato."
+                    android:textSize="13sp"
+                    android:textColor="@color/text_secondary"
+                    android:gravity="center"
+                    android:padding="8dp" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- ===== CARD: FESTIVI ===== -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="2dp"
+            app:cardBackgroundColor="@color/card_background">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="8dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="🇮🇹 Blocca nei Festivi Italiani"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/text_primary" />
+
+                    <com.google.android.material.materialswitch.MaterialSwitch
+                        android:id="@+id/switchHolidays"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/holidaysContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- ===== CARD: FERIE ===== -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardVacation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="32dp"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="2dp"
+            app:cardBackgroundColor="@color/card_background">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="⛱️ Periodo di Ferie"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/text_primary"
+                    android:layout_marginBottom="4dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ignora gli orari e blocca tutto (24h) in queste date."
+                    android:textSize="13sp"
+                    android:textColor="@color/text_secondary"
+                    android:layout_marginBottom="16dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:layout_marginEnd="8dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Data Inizio"
+                            android:textSize="12sp"
+                            android:textColor="@color/text_secondary" />
+
+                        <TextView
+                            android:id="@+id/tvVacationStart"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Non impostata"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            android:layout_marginBottom="8dp" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnVacationStart"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:minHeight="44dp"
+                            android:text="Inizio"
+                            style="@style/Widget.Material3.Button.OutlinedButton" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:layout_marginStart="8dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Data Fine"
+                            android:textSize="12sp"
+                            android:textColor="@color/text_secondary" />
+
+                        <TextView
+                            android:id="@+id/tvVacationEnd"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Non impostata"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            android:layout_marginBottom="8dp" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnVacationEnd"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:minHeight="44dp"
+                            android:text="Fine"
+                            style="@style/Widget.Material3.Button.OutlinedButton" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnClearVacation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="44dp"
+                    android:text="Rimuovi Date Ferie"
+                    android:layout_marginTop="12dp"
+                    android:visibility="gone"
+                    android:textColor="@color/blocked_red"
+                    style="@style/Widget.Material3.Button.TextButton" />
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+    </LinearLayout>
+</ScrollView>
