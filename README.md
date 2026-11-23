@@ -1,5 +1,8 @@
 # 🛡️ FocusBlock — WhatsApp & App Blocker for Android
 
+### 📲 Download & Install
+Download the latest ready-to-install APK directly from the **[Releases page](https://github.com/famigliabrettone/FocusBlock/releases/latest)**.
+
 [![Platform](https://img.shields.io/badge/Platform-Android%208.0%2B%20(API%2026%2B)-brightgreen.svg)](https://developer.android.com)
 [![Language](https://img.shields.io/badge/Language-Kotlin-blue.svg)](https://kotlinlang.org)
 [![Privacy](https://img.shields.io/badge/Privacy-100%25%20Offline%20%2F%20No%20Servers-success.svg)]()
